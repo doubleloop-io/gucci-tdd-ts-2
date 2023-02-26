@@ -6,6 +6,11 @@ export const pretty = (obj: unknown) => JSON.stringify(obj, null, 2)
 export const arrayFrom = (start: number, count: number) =>
     Array.from({ length: count }).map((_, i) => i + start)
 
+export const withoutId = <T extends { id: unknown }>(obj: T) => {
+    const { id: _, ...rest } = obj
+    return rest
+}
+
 // https://en.m.wikipedia.org/wiki/ANSI_escape_code#Colors
 const RESET = "\x1b[0m"
 const GREEN = "\x1b[32m"
