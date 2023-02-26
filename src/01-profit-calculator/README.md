@@ -1,13 +1,30 @@
 From:
 https://github.com/pvcarrera/crafted_design_exercises/tree/master/primitive-obsession
 
-**Requirements**
+### Goals 
+- Practice refactoring in small safe steps
+- Practice wrap primitive into an object refactoring
+- Distribute responsibilities into a lot of small objects (Value Objects)
+
+
+### Requirements
 
 * Transform all primitives into types
 * Primitives cannot be passed as parameters or be returned by a method
 * Primitives can only be passed into the constructor of an Object that defines what that primitive is
+* Commit often so that you can leverage git if you get into trouble
+* IMPORTANT: During the refactoring steps you should always stay in GREEN (few seconds are allowed)
+* If you find yourself with broken test, it's an indicator that you did a step that is too big. Retrace your steps (`git checkout .` is your friend) and start again (or ask for help)
+* During refactoring looks for opportunity to move some logic/behaviors to newly born objects 
 
-**Refactoring steps**
+
+### Value objects
+- Are immutable
+- Behave as behavior attractors
+- Should hide implementation details (at least in OO)
+
+
+### Refactoring steps
 
 1. Introduce a Currency class or enum; Use it on ProfitCalculator.
 2. Create an ExchangeRates first class collection; Use it on ProfitCalculator.
@@ -23,3 +40,13 @@ https://github.com/pvcarrera/crafted_design_exercises/tree/master/primitive-obse
 12. Remove localAmount field from ProfitCalculator, making necessary changes.
 13. Create Transactions notIn(currency) and Money amountIn(Currency, ExchangeRates) in Transactions
 14. Simplify ProfitCalculator, removing all the logic from add(Item). calculateProfit() must be simple
+
+
+### Steps to wrap a primitive
+- Place close to primitive to wrap (eg: ExchangeRates)
+- Introduce new type (eg: ExchangeRateNew = new ExchangeRates())
+- Search all write usage, if any, and add new usage in parallel (eg: ExchangeRateNew.setRate(...))
+- Your new object is ready to use. Your tests are GREEN, right?
+- Search and replace all read usage of the old primitive with new object. Be sure to remove all of them. Run tests often
+- In case the tests become RED, no panic. `CTRL+Z` or `git checkout .`, go back to GREEN and start again with even smaller steps
+- When old primitive is no longer accessed, it should be unused, and you should be able to remove it
