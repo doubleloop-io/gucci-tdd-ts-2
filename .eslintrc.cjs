@@ -18,6 +18,8 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   rules: {
     "no-empty-function": 0,
-    "@typescript-eslint/no-empty-function": 0
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/no-floating-promises": ["error", { ignoreIIFE: true }],
+    "@typescript-eslint/no-misused-promises": "error"
   },
 };
