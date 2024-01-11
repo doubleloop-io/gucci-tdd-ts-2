@@ -1,4 +1,4 @@
-import { test, expect, beforeEach } from "@jest/globals"
+import { test, expect, beforeEach } from "vitest"
 import { ProfitCalculator } from "./profile-calculator"
 
 let gbpCalculator = new ProfitCalculator("GBP")

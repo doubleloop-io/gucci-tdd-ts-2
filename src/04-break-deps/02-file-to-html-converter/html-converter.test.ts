@@ -1,4 +1,4 @@
-import { test, expect } from "@jest/globals"
+import { test, expect } from "vitest"
 
 test("it works", () => {
     expect("a").toEqual("a")
