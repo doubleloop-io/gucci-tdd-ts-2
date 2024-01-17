@@ -26,27 +26,27 @@ https://github.com/pvcarrera/crafted_design_exercises/tree/master/primitive-obse
 
 ### Refactoring steps
 
-1. Introduce a Currency class or enum; Use it on ProfitCalculator.
+1. Introduce a Currency class or enum or type literal; Use it on ProfitCalculator.
 2. Create an ExchangeRates first class collection; Use it on ProfitCalculator.
-3. Create a Money class. Identify all amount operations used by ProfitCalculator and add them to it.
+3. Create a Money class (amount, currency). Identify all amount operations used by ProfitCalculator and add them to it.
 4. Change ProfitCalculator and its tests to use the Money class
 5. Create classes Outgoing and Incoming that have an amount():Money method. Outgoing has negative amount.
 6. Add a Transaction sum type -> Transaction = Incoming | Outgoing
-7. Change ProfitCalculator and its tests to use Item.
-8. Create a Transactions first class collection and store each Transaction added to ProfitCalculator.
-9. Create boolean isIn(Currency) method in Transaction;
-10. Create Money amountIn(Currency) in Transactions.
-11. Change ProfitCalculator.calculateTax() to use methods created in steps 9 and 10.
-12. Remove localAmount field from ProfitCalculator, making necessary changes.
-13. Create Transactions notIn(currency) and Money amountIn(Currency, ExchangeRates) in Transactions
-14. Simplify ProfitCalculator, removing all the logic from add(Item). calculateProfit() must be simple
+7. Create a Transactions first class collection and store each Transaction added to ProfitCalculator.
+8. Create boolean isIn(Currency) method in Transaction;
+9. Create Money amountIn(Currency) in Transactions.
+10. Change ProfitCalculator.calculateTax() to use methods created in steps 8 and 9.
+11. Now attack calculateProfit(). Pay attention, it's slightly more complex.
+    1. Create amountNotIn(Currency, ExchangeRates) in Transactions
+12. Simplify ProfitCalculator, removing all the logic from add(Item). calculateProfit() must be simple
+13. Change ProfitCalculator tests to pass Item instead of (money, incoming).
 
 
 ### Steps to wrap a primitive
 - Place close to primitive to wrap (eg: ExchangeRates)
 - Introduce new type (eg: ExchangeRateNew = new ExchangeRates())
-- Search all write usage, if any, and add new usage in parallel (eg: ExchangeRateNew.setRate(...))
+- Search all **write** usage, if any, and add new usage in parallel (eg: ExchangeRateNew.setRate(...))
 - Your new object is ready to use. Your tests are GREEN, right?
-- Search and replace all read usage of the old primitive with new object. Be sure to remove all of them. Run tests often
+- Search and replace all **read** usage of the old primitive with new object. Be sure to remove all of them. Run tests often
 - In case the tests become RED, no panic. `CTRL+Z` or `git checkout .`, go back to GREEN and start again with even smaller steps
 - When old primitive is no longer accessed, it should be unused, and you should be able to remove it

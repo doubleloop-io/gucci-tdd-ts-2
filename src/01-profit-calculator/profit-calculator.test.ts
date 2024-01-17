@@ -1,5 +1,5 @@
 import { test, expect, beforeEach } from "vitest"
-import { ProfitCalculator } from "./profile-calculator"
+import { ProfitCalculator } from "./profit-calculator"
 
 let gbpCalculator = new ProfitCalculator("GBP")
 let eurCalculator = new ProfitCalculator("EUR")
