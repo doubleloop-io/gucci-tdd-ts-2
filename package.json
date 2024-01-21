@@ -15,7 +15,7 @@
     "tc:w": "npm run typecheck:w",
     "lint": "eslint src",
     "test": "vitest",
-    "freshstart": "rimraf .git && git init"
+    "freshstart": "rimraf .git && git init && git add -A && git commit -m 'Initial commit'"
   },
   "devDependencies": {
     "@types/node": "18.11.18",
