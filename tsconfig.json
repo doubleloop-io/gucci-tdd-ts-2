@@ -12,7 +12,7 @@
 
     // type checking
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "exactOptionalPropertyTypes": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

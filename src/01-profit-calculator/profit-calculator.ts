@@ -1,5 +1,5 @@
 export class ProfitCalculator {
-    static readonly ExchangeRates = {
+    static readonly ExchangeRates: Record<string, number> = {
         GBP: 1.0,
         USD: 1.6,
         EUR: 1.2,
@@ -25,8 +25,8 @@ export class ProfitCalculator {
         }
 
         const exchangeRate =
-            ProfitCalculator.ExchangeRates[currency] /
-            ProfitCalculator.ExchangeRates[this.localCurrency]
+            (ProfitCalculator.ExchangeRates[currency] || 0) /
+            (ProfitCalculator.ExchangeRates[this.localCurrency] || 0)
 
         realAmount = Math.floor(realAmount / exchangeRate)
 
